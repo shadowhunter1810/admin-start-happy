@@ -17,7 +17,7 @@ function toneClass(tone?: DetailField["tone"]) {
   switch (tone) {
     case "good":
       return "text-emerald-400";
-    case "warn":
+    case "warning":
       return "text-amber-400";
     case "bad":
       return "text-red-400";
