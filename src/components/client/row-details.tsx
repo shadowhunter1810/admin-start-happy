@@ -9,7 +9,7 @@
  * for anything else.
  */
 
-export type DetailField = { label: string; value: string; tone?: "default" | "good" | "warn" | "bad" | "info" };
+export type DetailField = { label: string; value: string; tone?: "default" | "good" | "warning" | "bad" | "info" };
 export type DetailTable = { title: string; columns: string[]; rows: string[][] };
 export type DetailSection = {
   key: string;
@@ -22,7 +22,7 @@ export type DetailSection = {
 export type DetailPayload = {
   title: string;
   subtitle: string;
-  pills: { tone: "primary" | "info" | "success" | "warn" | "danger"; label: string }[];
+  pills: { tone: "primary" | "info" | "success" | "warning" | "destructive"; label: string }[];
   sections: DetailSection[];
 };
 
@@ -46,7 +46,7 @@ function tradingDetail(cols: string[], vals: string[]): DetailPayload {
     pills: [
       { tone: "primary", label: platform },
       { tone: "info", label: type },
-      { tone: status.toLowerCase().includes("active") ? "success" : "warn", label: status },
+      { tone: status.toLowerCase().includes("active") ? "success" : "warning", label: status },
     ],
     sections: [
       {
@@ -85,7 +85,7 @@ function tradingDetail(cols: string[], vals: string[]): DetailPayload {
           { label: "Margin Level", value: pick(cols, vals, "margin") || "420%", tone: "good" },
           { label: "Largest Exposure", value: "XAUUSD" },
           { label: "Net Exposure", value: "$180K" },
-          { label: "Open Risk", value: "Medium", tone: "warn" },
+          { label: "Open Risk", value: "Medium", tone: "warning" },
         ],
       },
       {
@@ -144,7 +144,7 @@ function tradingDetail(cols: string[], vals: string[]): DetailPayload {
           { label: "MT5 Desktop", value: "Enabled", tone: "good" },
           { label: "WebTrader", value: "Enabled", tone: "good" },
           { label: "Mobile App", value: "Enabled", tone: "good" },
-          { label: "API Access", value: "Disabled", tone: "warn" },
+          { label: "API Access", value: "Disabled", tone: "warning" },
           { label: "Investor Password", value: "Active", tone: "good" },
         ],
       },
@@ -220,7 +220,7 @@ function historyDetail(cols: string[], vals: string[]): DetailPayload {
     subtitle: "Full trade lifecycle, execution quality and P&L breakdown",
     pills: [
       { tone: "primary", label: symbol },
-      { tone: side.toLowerCase().includes("buy") ? "success" : "danger", label: side },
+      { tone: side.toLowerCase().includes("buy") ? "success" : "destructive", label: side },
       { tone: "info", label: "Closed" },
     ],
     sections: [
@@ -312,7 +312,7 @@ function copyDetail(cols: string[], vals: string[]): DetailPayload {
           { label: "Total Copied Trades", value: "412" },
           { label: "Win Rate", value: "58%", tone: "good" },
           { label: "Total P&L", value: "+$3,820", tone: "good" },
-          { label: "Max Drawdown", value: "-12%", tone: "warn" },
+          { label: "Max Drawdown", value: "-12%", tone: "warning" },
           { label: "Sharpe Ratio", value: "1.42", tone: "good" },
         ],
       },
@@ -355,7 +355,7 @@ function kycDetail(cols: string[], vals: string[]): DetailPayload {
     subtitle: "Verification status, AML screening and document trail",
     pills: [
       { tone: "primary", label: "KYC" },
-      { tone: status.toLowerCase().includes("approved") ? "success" : "warn", label: status },
+      { tone: status.toLowerCase().includes("approved") ? "success" : "warning", label: status },
     ],
     sections: [
       { key: "overview", label: "Overview", fields: rowMap(cols, vals) },
@@ -421,7 +421,7 @@ function riskDetail(cols: string[], vals: string[]): DetailPayload {
     subtitle: "Risk alert detail, exposure context and resolution",
     pills: [
       { tone: "primary", label: "Risk" },
-      { tone: sev.toLowerCase().includes("high") ? "danger" : "warn", label: sev },
+      { tone: sev.toLowerCase().includes("high") ? "destructive" : "warning", label: sev },
     ],
     sections: [
       { key: "overview", label: "Overview", fields: rowMap(cols, vals) },
@@ -435,7 +435,7 @@ function riskDetail(cols: string[], vals: string[]): DetailPayload {
           { label: "Notional", value: "$294,000" },
           { label: "Margin Used", value: "$58,800" },
           { label: "Margin Level", value: "112%", tone: "bad" },
-          { label: "VaR (1d, 95%)", value: "$8,420", tone: "warn" },
+          { label: "VaR (1d, 95%)", value: "$8,420", tone: "warning" },
         ],
       },
       {
@@ -454,7 +454,7 @@ function riskDetail(cols: string[], vals: string[]): DetailPayload {
         label: "Resolution",
         fields: [
           { label: "Assigned To", value: "Dealing Desk · Rahul Shah" },
-          { label: "Status", value: "Investigating", tone: "warn" },
+          { label: "Status", value: "Investigating", tone: "warning" },
           { label: "SLA", value: "15 min" },
           { label: "Notes", value: "Client topping up via card; await confirmation." },
         ],
@@ -550,7 +550,7 @@ function supportDetail(cols: string[], vals: string[]): DetailPayload {
     subtitle: "Conversation, SLA, attachments and resolution",
     pills: [
       { tone: "primary", label: "Support" },
-      { tone: status.toLowerCase().includes("open") ? "warn" : "success", label: status },
+      { tone: status.toLowerCase().includes("open") ? "warning" : "success", label: status },
     ],
     sections: [
       { key: "overview", label: "Overview", fields: rowMap(cols, vals) },
@@ -560,11 +560,11 @@ function supportDetail(cols: string[], vals: string[]): DetailPayload {
         fields: [
           { label: "Subject", value: pick(cols, vals, "subject") || "Withdrawal pending > 24h" },
           { label: "Category", value: "Payments" },
-          { label: "Priority", value: "High", tone: "warn" },
+          { label: "Priority", value: "High", tone: "warning" },
           { label: "Channel", value: "Web Chat" },
           { label: "Opened", value: "Yesterday 14:22" },
           { label: "Assigned To", value: "Support · Aisha" },
-          { label: "SLA Remaining", value: "1h 12m", tone: "warn" },
+          { label: "SLA Remaining", value: "1h 12m", tone: "warning" },
         ],
       },
       {
