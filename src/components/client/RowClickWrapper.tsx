@@ -28,32 +28,58 @@ function toneClass(tone?: DetailField["tone"]) {
   }
 }
 
+interface RowClickWrapperProps {
+  children: ReactNode;
+  context: string;
+  onlyForTrades?: boolean; // STRICT CHECK CONTROL: true dene par yeh baaki tables ko skip kar dega
+}
+
 /**
  * Click delegation wrapper. Any <tr> click inside the wrapped subtree
- * opens a wide right-side Sheet with section tabs built from the page
- * context (Trading, History, Copy Trading, KYC, Risk, Security,
- * Support, Activity, IB Partner, Referrals). Falls back to a generic
- * "Overview + Notes" layout for other contexts.
+ * opens a wide right-side Sheet only if it matches targeted contexts.
  */
 export function RowClickWrapper({
   children,
   context,
-}: {
-  children: ReactNode;
-  context: string;
-}) {
+  onlyForTrades = false,
+}: RowClickWrapperProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [detail, setDetail] = useState<DetailPayload | null>(null);
 
   const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    if (target.closest("button, a, input, select, textarea, [role='button']")) return;
+
+    // 1. Agar user kisi interactive elements (buttons, inputs, links, links) par click kare toh drawer open mat karo
+    if (target.closest("button, a, input, select, textarea, [role='button'], click-stop")) return;
+
     const tr = target.closest("tr") as HTMLTableRowElement | null;
     if (!tr) return;
+
     const table = tr.closest("table");
     if (!table) return;
+
+    // 2. FIXED STAGE: Agar general generic view hai aur explicit tracking tables active nahi hain, toh sheet toggle behavior off rakho
+    const ctx = context.toLowerCase();
+    const isCopyTradingTable =
+      ctx.includes("copy") || ctx.includes("history") || ctx.includes("trading");
+
+    // Agar copy trading related pages ya logs nahi hain, toh click skip karke runtime normal operation chalne do
+    if (!isCopyTradingTable) {
+      return;
+    }
+
+    // 3. STRICT LEDGER CHECK: Agar onlyForTrades active hai toh confirm karo ki click sirf Execution Ledger par hi ho
+    if (onlyForTrades) {
+      const tableHeader =
+        table.closest("div")?.parentElement?.querySelector("h2")?.textContent || "";
+      if (!tableHeader.includes("Isolated Copy Trade Execution Ledger")) {
+        return; // Profit sharing ya kisi generic table click ko block karke return kar dega
+      }
+    }
+
     const headRow = table.querySelector("thead tr");
     if (!headRow) return;
+
     const heads = Array.from(headRow.querySelectorAll("th")).map(
       (th) => (th.textContent || "").trim() || "—",
     );
@@ -61,6 +87,7 @@ export function RowClickWrapper({
       (td) => (td.textContent || "").trim() || "—",
     );
     if (cells.length === 0) return;
+
     setDetail(buildDetail(context, heads, cells));
   };
 
@@ -82,9 +109,7 @@ export function RowClickWrapper({
                 </Pill>
               ))}
             </div>
-            <SheetTitle className="font-display text-2xl mt-2 truncate">
-              {detail?.title}
-            </SheetTitle>
+            <SheetTitle className="font-display text-2xl mt-2 truncate">{detail?.title}</SheetTitle>
             <SheetDescription className="text-sm text-muted-foreground">
               {detail?.subtitle}
             </SheetDescription>
@@ -96,7 +121,8 @@ export function RowClickWrapper({
               defaultValue={initial}
               className="flex-1 flex flex-col overflow-hidden"
             >
-              <div className="border-b border-border/60 px-4 overflow-x-auto">
+              {/* Horizontal Scroll Tabs with indicator hidden */}
+              <div className="border-b border-border/60 px-4 overflow-x-auto scrollbar-none touch-pan-x select-none">
                 <TabsList className="h-auto bg-transparent p-0 gap-1 flex-nowrap">
                   {detail.sections.map((s) => (
                     <TabsTrigger
@@ -194,9 +220,7 @@ export function RowClickWrapper({
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() =>
-                    notify("Export started", "CSV download initiated.", "success")
-                  }
+                  onClick={() => notify("Export started", "CSV download initiated.", "success")}
                 >
                   <Download className="h-3.5 w-3.5" />
                   Export

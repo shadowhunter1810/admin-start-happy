@@ -25,7 +25,10 @@ export const Route = createFileRoute("/history")({
   head: () => ({
     meta: [
       { title: "Trade History · Arjun Raghunathan — Atlas CRM" },
-      { name: "description", content: "Open, closed and pending trades with execution and risk analytics." },
+      {
+        name: "description",
+        content: "Open, closed and pending trades with execution and risk analytics.",
+      },
     ],
   }),
   component: HistoryPage,
@@ -49,22 +52,196 @@ type Trade = {
 };
 
 const TRADES: Trade[] = [
-  { ticket: "#892311", acct: "MT5-100421", platform: "MT5", symbol: "XAU/USD", side: "Buy", vol: "5.00", open: "2352.12", curr: "2361.20", pnl: "+$4,540", status: "Open", source: "Manual", time: "Today 09:12", win: true, tags: ["Large Volume", "High Risk"] },
-  { ticket: "#892355", acct: "MT5-88221", platform: "MT5", symbol: "BTC/USD", side: "Sell", vol: "1.00", open: "62,000", curr: "61,500", pnl: "+$500", status: "Closed", source: "Copy", time: "Yesterday", win: true, tags: ["Copy"] },
-  { ticket: "#892400", acct: "MT4-77212", platform: "MT4", symbol: "EUR/USD", side: "Buy", vol: "2.00", open: "1.0842", curr: "1.0821", pnl: "-$420", status: "Open", source: "EA", time: "Today 10:05", win: false, tags: ["EA", "Negative P&L"] },
-  { ticket: "#892390", acct: "MT5-100421", platform: "MT5", symbol: "GBP/JPY", side: "Buy", vol: "1.00", open: "188.420", curr: "188.220", pnl: "-$200", status: "Open", source: "Manual", time: "Today 11:20", win: false, tags: ["Negative P&L"] },
-  { ticket: "#892422", acct: "MT5-100421", platform: "MT5", symbol: "NAS100", side: "Sell", vol: "0.50", open: "18,420", curr: "18,460", pnl: "-$20", status: "Open", source: "Manual", time: "Today 12:42", win: false, tags: ["Scalping", "Negative P&L"] },
-  { ticket: "#800112", acct: "MT4-204112", platform: "MT4", symbol: "EUR/USD", side: "Buy", vol: "0.30", open: "1.08100", curr: "1.08640", pnl: "+$162", status: "Open", source: "Manual", time: "Yesterday", win: true, tags: ["Overnight"] },
-  { ticket: "#880900", acct: "MT5-100421", platform: "MT5", symbol: "GBP/USD", side: "Sell", vol: "1.00", open: "1.26540", curr: "1.26120", pnl: "+$420", status: "Closed", source: "Manual", time: "4 days ago", win: true, tags: [] },
-  { ticket: "#880612", acct: "MT5-100899", platform: "MT5", symbol: "USD/JPY", side: "Buy", vol: "3.00", open: "156.420", curr: "156.020", pnl: "-$1,200", status: "Closed", source: "EA", time: "5 days ago", win: false, tags: ["EA", "Negative P&L", "Large Volume"] },
-  { ticket: "#P-9001", acct: "MT5-100421", platform: "MT5", symbol: "EUR/USD", side: "Buy", vol: "1.00", open: "1.0790", curr: "—", pnl: "—", status: "Pending", source: "Manual", time: "Awaiting trigger", win: false, tags: [] },
-  { ticket: "#P-9002", acct: "MT5-100421", platform: "MT5", symbol: "XAU/USD", side: "Sell", vol: "2.00", open: "2,340.00", curr: "—", pnl: "—", status: "Pending", source: "Manual", time: "Awaiting trigger", win: false, tags: [] },
+  {
+    ticket: "#892311",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "XAU/USD",
+    side: "Buy",
+    vol: "5.00",
+    open: "2352.12",
+    curr: "2361.20",
+    pnl: "+$4,540",
+    status: "Open",
+    source: "Manual",
+    time: "Today 09:12",
+    win: true,
+    tags: ["Large Volume", "High Risk"],
+  },
+  {
+    ticket: "#892355",
+    acct: "MT5-88221",
+    platform: "MT5",
+    symbol: "BTC/USD",
+    side: "Sell",
+    vol: "1.00",
+    open: "62,000",
+    curr: "61,500",
+    pnl: "+$500",
+    status: "Closed",
+    source: "Copy",
+    time: "Yesterday",
+    win: true,
+    tags: ["Copy"],
+  },
+  {
+    ticket: "#892400",
+    acct: "MT4-77212",
+    platform: "MT4",
+    symbol: "EUR/USD",
+    side: "Buy",
+    vol: "2.00",
+    open: "1.0842",
+    curr: "1.0821",
+    pnl: "-$420",
+    status: "Open",
+    source: "EA",
+    time: "Today 10:05",
+    win: false,
+    tags: ["EA", "Negative P&L"],
+  },
+  {
+    ticket: "#892390",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "GBP/JPY",
+    side: "Buy",
+    vol: "1.00",
+    open: "188.420",
+    curr: "188.220",
+    pnl: "-$200",
+    status: "Open",
+    source: "Manual",
+    time: "Today 11:20",
+    win: false,
+    tags: ["Negative P&L"],
+  },
+  {
+    ticket: "#892422",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "NAS100",
+    side: "Sell",
+    vol: "0.50",
+    open: "18,420",
+    curr: "18,460",
+    pnl: "-$20",
+    status: "Open",
+    source: "Manual",
+    time: "Today 12:42",
+    win: false,
+    tags: ["Scalping", "Negative P&L"],
+  },
+  {
+    ticket: "#800112",
+    acct: "MT4-204112",
+    platform: "MT4",
+    symbol: "EUR/USD",
+    side: "Buy",
+    vol: "0.30",
+    open: "1.08100",
+    curr: "1.08640",
+    pnl: "+$162",
+    status: "Open",
+    source: "Manual",
+    time: "Yesterday",
+    win: true,
+    tags: ["Overnight"],
+  },
+  {
+    ticket: "#880900",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "GBP/USD",
+    side: "Sell",
+    vol: "1.00",
+    open: "1.26540",
+    curr: "1.26120",
+    pnl: "+$420",
+    status: "Closed",
+    source: "Manual",
+    time: "4 days ago",
+    win: true,
+    tags: [],
+  },
+  {
+    ticket: "#880612",
+    acct: "MT5-100899",
+    platform: "MT5",
+    symbol: "USD/JPY",
+    side: "Buy",
+    vol: "3.00",
+    open: "156.420",
+    curr: "156.020",
+    pnl: "-$1,200",
+    status: "Closed",
+    source: "EA",
+    time: "5 days ago",
+    win: false,
+    tags: ["EA", "Negative P&L", "Large Volume"],
+  },
+  {
+    ticket: "#P-9001",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "EUR/USD",
+    side: "Buy",
+    vol: "1.00",
+    open: "1.0790",
+    curr: "—",
+    pnl: "—",
+    status: "Pending",
+    source: "Manual",
+    time: "Awaiting trigger",
+    win: false,
+    tags: [],
+  },
+  {
+    ticket: "#P-9002",
+    acct: "MT5-100421",
+    platform: "MT5",
+    symbol: "XAU/USD",
+    side: "Sell",
+    vol: "2.00",
+    open: "2,340.00",
+    curr: "—",
+    pnl: "—",
+    status: "Pending",
+    source: "Manual",
+    time: "Awaiting trigger",
+    win: false,
+    tags: [],
+  },
 ];
 
 const STATUS_TABS = ["All", "Open", "Closed", "Pending"] as const;
-const TAGS = ["Manual", "EA", "Copy", "High Risk", "Large Volume", "Scalping", "Overnight", "Negative P&L"];
+const TAGS = [
+  "Manual",
+  "EA",
+  "Copy",
+  "High Risk",
+  "Large Volume",
+  "Scalping",
+  "Overnight",
+  "Negative P&L",
+];
 
-const DRAWER_TABS = ["Overview", "Execution", "Position", "SL/TP history", "P&L & fees", "Margin impact", "Trade source", "EA details", "Copy details", "Risk analysis", "Compliance", "Timeline", "Related orders", "Audit trail"];
+const DRAWER_TABS = [
+  "Overview",
+  "Execution",
+  "Position",
+  "SL/TP history",
+  "P&L & fees",
+  "Margin impact",
+  "Trade source",
+  "EA details",
+  "Copy details",
+  "Risk analysis",
+  "Compliance",
+  "Timeline",
+  "Related orders",
+  "Audit trail",
+];
 
 function HistoryPage() {
   const [query, setQuery] = useState("");
@@ -75,9 +252,19 @@ function HistoryPage() {
 
   const filtered = useMemo(() => {
     return TRADES.filter((t) => {
-      if (query && !t.ticket.toLowerCase().includes(query.toLowerCase()) && !t.symbol.toLowerCase().includes(query.toLowerCase()) && !t.acct.toLowerCase().includes(query.toLowerCase())) return false;
+      if (
+        query &&
+        !t.ticket.toLowerCase().includes(query.toLowerCase()) &&
+        !t.symbol.toLowerCase().includes(query.toLowerCase()) &&
+        !t.acct.toLowerCase().includes(query.toLowerCase())
+      )
+        return false;
       if (status !== "All" && t.status !== status) return false;
-      if (activeTags.length > 0 && !activeTags.every((tag) => t.tags.includes(tag) || t.source === tag)) return false;
+      if (
+        activeTags.length > 0 &&
+        !activeTags.every((tag) => t.tags.includes(tag) || t.source === tag)
+      )
+        return false;
       return true;
     });
   }, [query, status, activeTags]);
@@ -91,12 +278,33 @@ function HistoryPage() {
   return (
     <ClientShell>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-8">
-        <KPI label="Total trades" value="8,420" sub="Lifetime" icon={<Activity className="h-4 w-4" />} />
-        <KPI label="Open positions" value={String(TRADES.filter((t) => t.status === "Open").length)} sub="Active" tone="info" />
+        <KPI
+          label="Total trades"
+          value="8,420"
+          sub="Lifetime"
+          icon={<Activity className="h-4 w-4" />}
+        />
+        <KPI
+          label="Open positions"
+          value={String(TRADES.filter((t) => t.status === "Open").length)}
+          sub="Active"
+          tone="info"
+        />
         <KPI label="Closed trades" value="8,396" sub="Completed" />
-        <KPI label="Pending orders" value={String(TRADES.filter((t) => t.status === "Pending").length)} sub="Limit / stop" tone="warning" />
+        <KPI
+          label="Pending orders"
+          value={String(TRADES.filter((t) => t.status === "Pending").length)}
+          sub="Limit / stop"
+          tone="warning"
+        />
         <KPI label="Total volume" value="12,420" sub="Lots" icon={<Layers className="h-4 w-4" />} />
-        <KPI label="Net P&L" value="+$82,400" sub="All time" tone="success" icon={<TrendingUp className="h-4 w-4" />} />
+        <KPI
+          label="Net P&L"
+          value="+$82,400"
+          sub="All time"
+          tone="success"
+          icon={<TrendingUp className="h-4 w-4" />}
+        />
         <KPI label="Win rate" value="61%" sub="Profit factor 1.82" tone="success" />
         <KPI label="Largest exposure" value="XAU/USD" sub="$84K" tone="warning" />
       </div>
@@ -118,8 +326,25 @@ function HistoryPage() {
                     className="h-7 w-56 rounded-md border border-border bg-surface pl-7 pr-2 text-[11px] outline-none placeholder:text-muted-foreground focus:border-ring"
                   />
                 </div>
-                <button onClick={() => { setQuery(""); setStatus("All"); setActiveTags([]); notify("Filters cleared"); }} className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-2 py-1 text-[11px] hover:bg-surface-2"><Filter className="h-3 w-3" /> Reset</button>
-                <button onClick={() => notify("Trades exported", `${filtered.length} rows exported as CSV.`, "success")} className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-2 py-1 text-[11px] hover:bg-surface-2"><Download className="h-3 w-3" /> Export</button>
+                <button
+                  onClick={() => {
+                    setQuery("");
+                    setStatus("All");
+                    setActiveTags([]);
+                    notify("Filters cleared");
+                  }}
+                  className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-2 py-1 text-[11px] hover:bg-surface-2"
+                >
+                  <Filter className="h-3 w-3" /> Reset
+                </button>
+                <button
+                  onClick={() =>
+                    notify("Trades exported", `${filtered.length} rows exported as CSV.`, "success")
+                  }
+                  className="inline-flex items-center gap-1 rounded-md border border-border bg-surface px-2 py-1 text-[11px] hover:bg-surface-2"
+                >
+                  <Download className="h-3 w-3" /> Export
+                </button>
               </div>
             }
           >
@@ -151,30 +376,67 @@ function HistoryPage() {
             <Table>
               <thead>
                 <tr>
-                  <Th>Ticket</Th><Th>Account</Th><Th>Platform</Th><Th>Symbol</Th><Th>Side</Th><Th>Vol</Th>
-                  <Th className="text-right">Open</Th><Th className="text-right">Current/Close</Th><Th className="text-right">P&L</Th>
-                  <Th>Status</Th><Th>Type</Th><Th>Time</Th>
+                  <Th>Ticket</Th>
+                  <Th>Account</Th>
+                  <Th>Platform</Th>
+                  <Th>Symbol</Th>
+                  <Th>Side</Th>
+                  <Th>Vol</Th>
+                  <Th className="text-right">Open</Th>
+                  <Th className="text-right">Current/Close</Th>
+                  <Th className="text-right">P&L</Th>
+                  <Th>Status</Th>
+                  <Th>Type</Th>
+                  <Th>Time</Th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.length === 0 && (
-                  <tr><Td className="text-muted-foreground" >No trades match the current filters.</Td></tr>
+                  <tr>
+                    <Td className="text-muted-foreground">No trades match the current filters.</Td>
+                  </tr>
                 )}
                 {filtered.map((t) => (
-                  <tr key={t.ticket} onClick={() => setSelectedTicket(t.ticket)} className={`cursor-pointer hover:bg-surface/40 ${selectedTicket === t.ticket ? "bg-primary/5" : ""}`}>
+                  <tr
+                    key={t.ticket}
+                    onClick={() => setSelectedTicket(t.ticket)}
+                    className={`cursor-pointer hover:bg-surface/40 ${selectedTicket === t.ticket ? "bg-primary/5" : ""}`}
+                  >
                     <Td className="font-mono text-[10px] font-semibold">{t.ticket}</Td>
                     <Td className="font-mono text-[10px] text-muted-foreground">{t.acct}</Td>
-                    <Td><Pill tone="info">{t.platform}</Pill></Td>
+                    <Td>
+                      <Pill tone="info">{t.platform}</Pill>
+                    </Td>
                     <Td className="font-medium">{t.symbol}</Td>
-                    <Td><Pill tone={t.side === "Buy" ? "success" : "destructive"}>{t.side}</Pill></Td>
+                    <Td>
+                      <Pill tone={t.side === "Buy" ? "success" : "destructive"}>{t.side}</Pill>
+                    </Td>
                     <Td>{t.vol}</Td>
                     <Td className="text-right text-muted-foreground">{t.open}</Td>
                     <Td className="text-right">{t.curr}</Td>
-                    <Td className={`text-right font-semibold ${t.pnl === "—" ? "" : t.win ? "text-success" : "text-destructive"}`}>{t.pnl}</Td>
-                    <Td><Pill tone={t.status === "Open" ? "info" : t.status === "Closed" ? "muted" : "warning"}>{t.status}</Pill></Td>
+                    <Td
+                      className={`text-right font-semibold ${t.pnl === "—" ? "" : t.win ? "text-success" : "text-destructive"}`}
+                    >
+                      {t.pnl}
+                    </Td>
+                    <Td>
+                      <Pill
+                        tone={
+                          t.status === "Open" ? "info" : t.status === "Closed" ? "muted" : "warning"
+                        }
+                      >
+                        {t.status}
+                      </Pill>
+                    </Td>
                     <Td>
                       <span className="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
-                        {t.source === "EA" ? <Bot className="h-3 w-3" /> : t.source === "Copy" ? <Users className="h-3 w-3" /> : <Zap className="h-3 w-3" />}
+                        {t.source === "EA" ? (
+                          <Bot className="h-3 w-3" />
+                        ) : t.source === "Copy" ? (
+                          <Users className="h-3 w-3" />
+                        ) : (
+                          <Zap className="h-3 w-3" />
+                        )}
                         {t.source}
                       </span>
                     </Td>
@@ -186,7 +448,7 @@ function HistoryPage() {
           </Section>
 
           {/* Trade Drawer */}
-          <Section
+          {/* <Section
             title={`${selected.ticket} — ${selected.symbol} ${selected.side}`}
             icon={<Activity className="h-4 w-4" />}
             right={
@@ -273,12 +535,21 @@ function HistoryPage() {
               <MiniBtn onClick={() => notify("Statement exported", `PDF generated for ${selected.ticket}.`, "success")}>Export PDF</MiniBtn>
               <MiniBtn tone="destructive" onClick={() => confirmAction(`Force close ${selected.ticket}`, `Close at market — net ${selected.pnl}.`, "danger")}>Force close</MiniBtn>
             </div>
-          </Section>
+          </Section> */}
 
           {/* Symbol Analytics */}
           <Section title="Symbol Analytics" icon={<BarChart3 className="h-4 w-4" />}>
             <Table>
-              <thead><tr><Th>Symbol</Th><Th className="text-right">Trades</Th><Th className="text-right">Volume</Th><Th className="text-right">Net P&L</Th><Th className="text-right">Win %</Th><Th>Exposure</Th></tr></thead>
+              <thead>
+                <tr>
+                  <Th>Symbol</Th>
+                  <Th className="text-right">Trades</Th>
+                  <Th className="text-right">Volume</Th>
+                  <Th className="text-right">Net P&L</Th>
+                  <Th className="text-right">Win %</Th>
+                  <Th>Exposure</Th>
+                </tr>
+              </thead>
               <tbody>
                 {[
                   ["XAU/USD", "420", "820 Lots", "+$12,400", "64%", "High", "destructive"],
@@ -292,9 +563,15 @@ function HistoryPage() {
                     <Td className="font-medium">{r[0]}</Td>
                     <Td className="text-right">{r[1]}</Td>
                     <Td className="text-right">{r[2]}</Td>
-                    <Td className={`text-right font-semibold ${String(r[3]).startsWith("+") ? "text-success" : "text-destructive"}`}>{r[3]}</Td>
+                    <Td
+                      className={`text-right font-semibold ${String(r[3]).startsWith("+") ? "text-success" : "text-destructive"}`}
+                    >
+                      {r[3]}
+                    </Td>
                     <Td className="text-right">{r[4]}</Td>
-                    <Td><Pill tone={r[6] as any}>{r[5]}</Pill></Td>
+                    <Td>
+                      <Pill tone={r[6] as any}>{r[5]}</Pill>
+                    </Td>
                   </tr>
                 ))}
               </tbody>
@@ -309,9 +586,17 @@ function HistoryPage() {
                 return (
                   <div key={i} className="flex flex-col items-center gap-1">
                     <div className="relative flex h-24 w-full items-end justify-center">
-                      <div className={`w-full rounded-sm ${v >= 0 ? "bg-success/70" : "bg-destructive/70"}`} style={{ height: `${pct}%` }} />
+                      <div
+                        className={`w-full rounded-sm ${v >= 0 ? "bg-success/70" : "bg-destructive/70"}`}
+                        style={{ height: `${pct}%` }}
+                      />
                     </div>
-                    <div className={`text-[9px] num ${v >= 0 ? "text-success" : "text-destructive"}`}>{v >= 0 ? "+" : ""}{v}</div>
+                    <div
+                      className={`text-[9px] num ${v >= 0 ? "text-success" : "text-destructive"}`}
+                    >
+                      {v >= 0 ? "+" : ""}
+                      {v}
+                    </div>
                     <div className="text-[9px] text-muted-foreground">D-{9 - i}</div>
                   </div>
                 );
@@ -334,14 +619,25 @@ function HistoryPage() {
                 ["+$2.2K", "Best day", "success"],
                 ["-$1.1K", "Worst day", "destructive"],
               ].map(([v, l, tone]) => (
-                <div key={l} className="rounded-md border border-border/50 bg-surface/40 p-2 text-center">
-                  <div className={`text-base font-semibold num ${tone === "success" ? "text-success" : tone === "destructive" ? "text-destructive" : ""}`}>{v}</div>
-                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground">{l}</div>
+                <div
+                  key={l}
+                  className="rounded-md border border-border/50 bg-surface/40 p-2 text-center"
+                >
+                  <div
+                    className={`text-base font-semibold num ${tone === "success" ? "text-success" : tone === "destructive" ? "text-destructive" : ""}`}
+                  >
+                    {v}
+                  </div>
+                  <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
+                    {l}
+                  </div>
                 </div>
               ))}
             </div>
             <div className="mt-3 space-y-1.5">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Win / Loss distribution</div>
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                Win / Loss distribution
+              </div>
               <div className="flex h-2.5 overflow-hidden rounded-full">
                 <div className="bg-success" style={{ width: "61%" }} />
                 <div className="bg-destructive" style={{ width: "39%" }} />
@@ -355,7 +651,15 @@ function HistoryPage() {
 
           <Section title="Pending Orders" icon={<Clock className="h-4 w-4" />}>
             <Table>
-              <thead><tr><Th>Order</Th><Th>Symbol</Th><Th>Type</Th><Th>Trigger</Th><Th>{""}</Th></tr></thead>
+              <thead>
+                <tr>
+                  <Th>Order</Th>
+                  <Th>Symbol</Th>
+                  <Th>Type</Th>
+                  <Th>Trigger</Th>
+                  <Th>{""}</Th>
+                </tr>
+              </thead>
               <tbody>
                 {[
                   ["#P-9001", "EUR/USD", "Buy Limit", "1.0790"],
@@ -366,10 +670,17 @@ function HistoryPage() {
                   <tr key={r[0] as string}>
                     <Td className="font-mono text-[10px]">{r[0]}</Td>
                     <Td className="font-medium">{r[1]}</Td>
-                    <Td><Pill tone="info">{r[2]}</Pill></Td>
+                    <Td>
+                      <Pill tone="info">{r[2]}</Pill>
+                    </Td>
                     <Td className="num">{r[3]}</Td>
                     <Td className="text-right">
-                      <button onClick={() => confirmAction(`Cancel ${r[0]}`, `${r[1]} ${r[2]} @ ${r[3]}`)} className="text-[10px] text-muted-foreground hover:text-destructive">Cancel</button>
+                      <button
+                        onClick={() => confirmAction(`Cancel ${r[0]}`, `${r[1]} ${r[2]} @ ${r[3]}`)}
+                        className="text-[10px] text-muted-foreground hover:text-destructive"
+                      >
+                        Cancel
+                      </button>
                     </Td>
                   </tr>
                 ))}
@@ -384,9 +695,13 @@ function HistoryPage() {
             <Row label="Requotes" value="0.2%" />
             <Row label="Rejections" value="0.04%" />
             <Row label="Fill ratio" value="99.96%" />
-            <div className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground">Liquidity quality</div>
+            <div className="mt-2 text-[10px] uppercase tracking-wider text-muted-foreground">
+              Liquidity quality
+            </div>
             <Bar value={88} tone="success" />
-            <div className="mt-1 text-[10px] text-muted-foreground">88 / 100 · excellent fill quality</div>
+            <div className="mt-1 text-[10px] text-muted-foreground">
+              88 / 100 · excellent fill quality
+            </div>
           </Section>
 
           <Section title="Copy Trade Activity" icon={<Users className="h-4 w-4" />}>
@@ -400,31 +715,81 @@ function HistoryPage() {
 
           <Section title="Risk Trade Monitoring" icon={<ShieldAlert className="h-4 w-4" />}>
             <ul className="space-y-1.5 text-xs">
-              <li className="flex items-center justify-between"><span className="inline-flex items-center gap-2"><AlertTriangle className="h-3.5 w-3.5 text-warning" />Excessive leverage</span><Pill tone="warning">Medium</Pill></li>
-              <li className="flex items-center justify-between"><span className="inline-flex items-center gap-2"><AlertTriangle className="h-3.5 w-3.5 text-destructive" />Margin risk</span><Pill tone="destructive">High</Pill></li>
-              <li className="flex items-center justify-between"><span className="inline-flex items-center gap-2"><AlertTriangle className="h-3.5 w-3.5 text-warning" />Toxic scalping</span><Pill tone="warning">Medium</Pill></li>
-              <li className="flex items-center justify-between"><span className="inline-flex items-center gap-2"><AlertTriangle className="h-3.5 w-3.5 text-destructive" />Abnormal lot size</span><Pill tone="destructive">High</Pill></li>
-              <li className="flex items-center justify-between"><span className="inline-flex items-center gap-2"><AlertTriangle className="h-3.5 w-3.5 text-warning" />Overnight exposure</span><Pill tone="warning">Medium</Pill></li>
+              <li className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2">
+                  <AlertTriangle className="h-3.5 w-3.5 text-warning" />
+                  Excessive leverage
+                </span>
+                <Pill tone="warning">Medium</Pill>
+              </li>
+              <li className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2">
+                  <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
+                  Margin risk
+                </span>
+                <Pill tone="destructive">High</Pill>
+              </li>
+              <li className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2">
+                  <AlertTriangle className="h-3.5 w-3.5 text-warning" />
+                  Toxic scalping
+                </span>
+                <Pill tone="warning">Medium</Pill>
+              </li>
+              <li className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2">
+                  <AlertTriangle className="h-3.5 w-3.5 text-destructive" />
+                  Abnormal lot size
+                </span>
+                <Pill tone="destructive">High</Pill>
+              </li>
+              <li className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-2">
+                  <AlertTriangle className="h-3.5 w-3.5 text-warning" />
+                  Overnight exposure
+                </span>
+                <Pill tone="warning">Medium</Pill>
+              </li>
             </ul>
           </Section>
 
           <Section title="Admin Actions" icon={<Activity className="h-4 w-4" />}>
-            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Safe</div>
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              Safe
+            </div>
             <div className="mt-1 grid grid-cols-2 gap-1.5">
               {[
                 ["View logs", "Audit log viewer opened."],
                 ["Export statement", "PDF generated."],
                 ["Add note", "Note pinned to trade."],
                 ["Notify client", "Email sent to client."],
-              ].map(([a, m]) => <MiniBtn key={a} onClick={() => notify(a, m, "success")}>{a}</MiniBtn>)}
+              ].map(([a, m]) => (
+                <MiniBtn key={a} onClick={() => notify(a, m, "success")}>
+                  {a}
+                </MiniBtn>
+              ))}
             </div>
             <div className="mt-3 text-[10px] font-semibold uppercase tracking-wider">Moderate</div>
             <div className="mt-1 grid grid-cols-2 gap-1.5">
-              {["Modify SL/TP", "Disable EA", "Restrict symbol", "Flag trade"].map((a) => <MiniBtn key={a} onClick={() => confirmAction(a, `Apply to ${selected.ticket}?`)}>{a}</MiniBtn>)}
+              {["Modify SL/TP", "Disable EA", "Restrict symbol", "Flag trade"].map((a) => (
+                <MiniBtn key={a} onClick={() => confirmAction(a, `Apply to ${selected.ticket}?`)}>
+                  {a}
+                </MiniBtn>
+              ))}
             </div>
-            <div className="mt-3 text-[10px] font-semibold uppercase tracking-wider text-destructive/80">Danger zone</div>
+            <div className="mt-3 text-[10px] font-semibold uppercase tracking-wider text-destructive/80">
+              Danger zone
+            </div>
             <div className="mt-1 grid grid-cols-2 gap-1.5">
-              {["Force close", "Disable trading", "Lock account", "Escalate"].map((a) => <MiniBtn key={a} tone="destructive" onClick={() => confirmAction(a, `${a} on ${selected.ticket}?`, "danger")}>{a}</MiniBtn>)}
+              {["Force close", "Disable trading", "Lock account", "Escalate"].map((a) => (
+                <MiniBtn
+                  key={a}
+                  tone="destructive"
+                  onClick={() => confirmAction(a, `${a} on ${selected.ticket}?`, "danger")}
+                >
+                  {a}
+                </MiniBtn>
+              ))}
             </div>
           </Section>
         </div>
@@ -433,11 +798,31 @@ function HistoryPage() {
   );
 }
 
-function SubHeading({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <h3 className={`mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground ${className}`}>{children}</h3>;
+function SubHeading({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <h3
+      className={`mb-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground ${className}`}
+    >
+      {children}
+    </h3>
+  );
 }
 
-function MiniBtn({ children, tone = "default", onClick }: { children: React.ReactNode; tone?: "default" | "destructive"; onClick?: () => void }) {
+function MiniBtn({
+  children,
+  tone = "default",
+  onClick,
+}: {
+  children: React.ReactNode;
+  tone?: "default" | "destructive";
+  onClick?: () => void;
+}) {
   return (
     <button
       onClick={onClick}
