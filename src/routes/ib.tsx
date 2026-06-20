@@ -63,8 +63,8 @@ const PARTNER = {
 const Card = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
   <div className={`rounded-xl border border-gray-200 bg-white shadow-sm ${className}`}>{children}</div>
 );
-const Section = ({ title, subtitle, action, children }: { title: string; subtitle?: string; action?: React.ReactNode; children: React.ReactNode }) => (
-  <Card className="p-6">
+const Section = ({ title, subtitle, action, children, className = "" }: { title: string; subtitle?: string; action?: React.ReactNode; children: React.ReactNode; className?: string }) => (
+  <Card className={`p-6 ${className}`}>
     <div className="mb-4 flex items-start justify-between gap-3">
       <div>
         <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
@@ -92,10 +92,10 @@ const KV = ({ k, v, tone }: { k: string; v: React.ReactNode; tone?: "green"|"amb
     <span className={`text-sm font-medium ${tone==="green"?"text-emerald-600":tone==="red"?"text-rose-600":tone==="amber"?"text-amber-600":"text-gray-900"}`}>{v}</span>
   </div>
 );
-const Kpi = ({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: "green"|"red"|"amber"|"blue" }) => (
+const Kpi = ({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: "green"|"red"|"amber"|"blue"|"violet" }) => (
   <Card className="p-4">
     <div className="text-[11px] uppercase tracking-wide text-gray-500">{label}</div>
-    <div className={`mt-1 text-2xl font-semibold ${tone==="green"?"text-emerald-600":tone==="red"?"text-rose-600":tone==="amber"?"text-amber-600":tone==="blue"?"text-sky-600":"text-gray-900"}`}>{value}</div>
+    <div className={`mt-1 text-2xl font-semibold ${tone==="green"?"text-emerald-600":tone==="red"?"text-rose-600":tone==="amber"?"text-amber-600":tone==="blue"?"text-sky-600":tone==="violet"?"text-violet-600":"text-gray-900"}`}>{value}</div>
     {sub && <div className="mt-0.5 text-xs text-gray-500">{sub}</div>}
   </Card>
 );
@@ -414,7 +414,7 @@ function Portfolio() {
       <Kpi label="Total Clients" value="147" />
       <Kpi label="Active Clients" value="38" tone="green" />
       <Kpi label="Dormant Clients" value="19" tone="amber" />
-      <Kpi label="VIP Clients" value="6" tone="violet" as any />
+      <Kpi label="VIP Clients" value="6" tone="violet" />
       <Kpi label="Funded Clients" value="92" />
       <Kpi label="Retention Rate" value="68%" tone="green" />
       <Kpi label="Churn Rate" value="12%" tone="amber" />

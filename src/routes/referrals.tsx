@@ -390,7 +390,7 @@ function RevenueContribution() {
         <KV k="Generated Revenue" v="$189,420" tone="green" />
         <KV k="Revenue Per Client" v="$762" />
         <KV k="Revenue Per Lot" v="$1.50" />
-        <KV k="Top 10% Contribution" v="62%" tone="violet" />
+        <KV k="Top 10% Contribution" v={<Pill tone="violet">62%</Pill>} />
         <KV k="Monthly Growth" v="+12%" tone="green" />
       </Section>
       <Section title="Revenue by Segment">
