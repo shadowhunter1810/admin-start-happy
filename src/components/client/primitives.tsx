@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Pill } from "./ClientShell";
+import { cn } from "@/lib/utils";
 
 export function Section({
   title,
@@ -61,7 +62,9 @@ export function KPI({
   }[tone];
   return (
     <div className="group relative overflow-hidden rounded-xl border border-border/70 bg-card/80 p-4 transition-colors hover:border-border">
-      <div className={`pointer-events-none absolute inset-x-0 -top-12 h-24 bg-gradient-to-b ${accent}`} />
+      <div
+        className={`pointer-events-none absolute inset-x-0 -top-12 h-24 bg-gradient-to-b ${accent}`}
+      />
       <div className="relative flex items-center justify-between">
         <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
           {label}
@@ -96,7 +99,13 @@ export function Row({
   );
 }
 
-export function Bar({ value, tone = "primary" }: { value: number; tone?: "primary" | "success" | "warning" | "destructive" }) {
+export function Bar({
+  value,
+  tone = "primary",
+}: {
+  value: number;
+  tone?: "primary" | "success" | "warning" | "destructive";
+}) {
   const cls = {
     primary: "bg-primary",
     success: "bg-success",
@@ -171,5 +180,105 @@ export function RiskDot({ level }: { level: "Low" | "Medium" | "High" | "V. High
       <span className={`h-1.5 w-1.5 rounded-full ${map[level]}`} />
       <span>{level}</span>
     </span>
+  );
+}
+
+type Tone = "success" | "info" | "warning" | "critical" | "neutral" | "primary";
+
+const toneClasses: Record<Tone, string> = {
+  success: "bg-success/15 text-success border-success/30",
+  info: "bg-info/15 text-info border-info/30",
+  warning: "bg-warning/15 text-warning border-warning/30",
+  critical: "bg-critical/15 text-critical border-critical/40",
+  neutral: "bg-muted text-muted-foreground border-border",
+  primary: "bg-primary/15 text-primary border-primary/30",
+};
+
+export function StatusPill({
+  children,
+  tone = "neutral",
+  icon,
+  className,
+}: {
+  children: ReactNode;
+  tone?: Tone;
+  icon?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium tracking-wide",
+        toneClasses[tone],
+        className,
+      )}
+    >
+      {icon}
+      {children}
+    </span>
+  );
+}
+
+export function Dot({ tone = "neutral" }: { tone?: Tone }) {
+  const map: Record<Tone, string> = {
+    success: "bg-success",
+    info: "bg-info",
+    warning: "bg-warning",
+    critical: "bg-critical",
+    neutral: "bg-muted-foreground",
+    primary: "bg-primary",
+  };
+  return (
+    <span className="relative inline-flex h-2 w-2">
+      <span className={cn("absolute inset-0 rounded-full opacity-60 animate-ping", map[tone])} />
+      <span className={cn("relative inline-flex h-2 w-2 rounded-full", map[tone])} />
+    </span>
+  );
+}
+
+export function SectionCard({
+  title,
+  description,
+  action,
+  children,
+  className,
+}: {
+  title: string;
+  description?: string;
+  action?: ReactNode;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section
+      className={cn(
+        "rounded-2xl border border-border bg-card/60 backdrop-blur-sm shadow-[0_1px_0_0_color-mix(in_oklab,var(--color-foreground)_5%,transparent)]",
+        className,
+      )}
+    >
+      <header className="flex items-start justify-between gap-4 border-b border-border/60 px-5 py-4">
+        <div>
+          <h3 className="font-display text-base font-semibold tracking-tight">{title}</h3>
+          {description ? (
+            <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+          ) : null}
+        </div>
+        {action ? <div className="shrink-0">{action}</div> : null}
+      </header>
+      <div className="p-5">{children}</div>
+    </section>
+  );
+}
+
+export function MonoText({ children, className }: { children: ReactNode; className?: string }) {
+  return <span className={cn("font-mono text-[0.78rem]", className)}>{children}</span>;
+}
+
+export function Empty({ title = "Nothing here yet", hint }: { title?: string; hint?: string }) {
+  return (
+    <div className="rounded-xl border border-dashed border-border p-8 text-center">
+      <p className="font-display text-sm font-semibold">{title}</p>
+      {hint ? <p className="mt-1 text-xs text-muted-foreground">{hint}</p> : null}
+    </div>
   );
 }

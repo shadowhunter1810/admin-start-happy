@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ClientShell } from "@/components/client/ClientShell";
 import { InteractiveTab } from "@/components/client/InteractiveTab";
 import { SupportTab } from "@/lib/pixel-source";
+import SupportModule from "@/components/client/SupportModule";
 
 export const Route = createFileRoute("/support")({
   head: () => ({
@@ -14,7 +15,8 @@ export const Route = createFileRoute("/support")({
     <ClientShell>
       <InteractiveTab
         render={({ openDrawer, openAction }) => (
-          <SupportTab openDrawer={openDrawer} openAction={openAction} />
+          // <SupportTab openDrawer={openDrawer} openAction={openAction} />
+          <SupportModule />
         )}
       />
     </ClientShell>
