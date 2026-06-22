@@ -39,7 +39,7 @@ import {
 export default function RiskMonitoringTab() {
   // Navigation & Drawer States
   const [activeTab, setActiveTab] = useState("active-alerts");
-  const [selectedAlert, setSelectedAlert] = useState(null);
+  const [selectedAlert, setSelectedAlert] = useState<any>(null);
   const [drawerTab, setDrawerTab] = useState("overview");
   const [riskTierOverride, setRiskTierOverride] = useState("HIGH");
   const [overrideReason, setOverrideReason] = useState("");
