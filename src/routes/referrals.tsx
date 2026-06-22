@@ -2143,7 +2143,7 @@ function RevenueAnalytics() {
         </div>
       </Section>
 
-      <div className="lg:col-span-2"><Section title="Top Revenue Clients">
+      <Section title="Top Revenue Clients">
         <table className="w-full text-sm">
           <thead className="border-b bg-gray-50 text-left text-xs text-gray-500">
             <tr>
@@ -2258,7 +2258,7 @@ function RiskCompliance() {
         </div>
       </Section>
 
-      <Section title="Client Restrictions" className="lg:col-span-2">
+      <Section title="Client Restrictions">
         <table className="w-full text-sm">
           <thead className="border-b bg-gray-50 text-left text-xs text-gray-500">
             <tr>
