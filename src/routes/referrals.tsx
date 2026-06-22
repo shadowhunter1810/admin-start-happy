@@ -2143,7 +2143,7 @@ function RevenueAnalytics() {
         </div>
       </Section>
 
-      <Section title="Top Revenue Clients" className="lg:col-span-2">
+      <div className="lg:col-span-2"><Section title="Top Revenue Clients">
         <table className="w-full text-sm">
           <thead className="border-b bg-gray-50 text-left text-xs text-gray-500">
             <tr>

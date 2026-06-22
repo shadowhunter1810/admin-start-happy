@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 // --- SAFE ICON COMPONENT WRAPPER (Prevents SSR crashes if lucide fails to load an export) ---
-const SafeIcon = ({ icon: IconComponent, className = "w-5 h-5" }) => {
+const SafeIcon = ({ icon: IconComponent, className = "w-5 h-5" }: { icon: any; className?: string }) => {
   if (!IconComponent) {
     // Fallback block if any icon named export returns undefined
     return <div className={`${className} bg-slate-200 rounded`} />;
@@ -357,9 +357,9 @@ export function CopyTradingTab() {
   ]);
 
   // --- DRAWERS CONTROLLER STATES ---
-  const [selectedProvider, setSelectedProvider] = useState(null);
-  const [selectedFollower, setSelectedFollower] = useState(null);
-  const [selectedTrade, setSelectedTrade] = useState(null);
+  const [selectedProvider, setSelectedProvider] = useState<any>(null);
+  const [selectedFollower, setSelectedFollower] = useState<any>(null);
+  const [selectedTrade, setSelectedTrade] = useState<any>(null);
 
   // Drawer inner pagination tabs
   const [providerDrawerTab, setProviderDrawerTab] = useState("Overview");
@@ -379,7 +379,7 @@ export function CopyTradingTab() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // --- UTILITY ACTION TRIGGER ---
-  const openActionModal = (type, severity, title, purpose, target) => {
+  const openActionModal = (type: string, severity: string, title: string, purpose: string, target: string) => {
     setActionModal({ isOpen: true, type, severity, title, purpose, target });
     setReasonInput("");
   };
