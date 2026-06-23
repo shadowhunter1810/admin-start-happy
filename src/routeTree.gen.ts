@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as TradingRouteImport } from './routes/trading'
 import { Route as SupportRouteImport } from './routes/support'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as RiskRouteImport } from './routes/risk'
 import { Route as ReferralsRouteImport } from './routes/referrals'
@@ -43,6 +44,11 @@ const TradingRoute = TradingRouteImport.update({
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SecurityRoute = SecurityRouteImport.update({
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/referrals': typeof ReferralsRoute
   '/risk': typeof RiskRoute
   '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
   '/support': typeof SupportRoute
   '/trading': typeof TradingRoute
   '/wallet': typeof WalletRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/referrals': typeof ReferralsRoute
   '/risk': typeof RiskRoute
   '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
   '/support': typeof SupportRoute
   '/trading': typeof TradingRoute
   '/wallet': typeof WalletRoute
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/referrals': typeof ReferralsRoute
   '/risk': typeof RiskRoute
   '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
   '/support': typeof SupportRoute
   '/trading': typeof TradingRoute
   '/wallet': typeof WalletRoute
@@ -218,6 +227,7 @@ export interface FileRouteTypes {
     | '/referrals'
     | '/risk'
     | '/security'
+    | '/settings'
     | '/support'
     | '/trading'
     | '/wallet'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/referrals'
     | '/risk'
     | '/security'
+    | '/settings'
     | '/support'
     | '/trading'
     | '/wallet'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/referrals'
     | '/risk'
     | '/security'
+    | '/settings'
     | '/support'
     | '/trading'
     | '/wallet'
@@ -285,6 +297,7 @@ export interface RootRouteChildren {
   ReferralsRoute: typeof ReferralsRoute
   RiskRoute: typeof RiskRoute
   SecurityRoute: typeof SecurityRoute
+  SettingsRoute: typeof SettingsRoute
   SupportRoute: typeof SupportRoute
   TradingRoute: typeof TradingRoute
   WalletRoute: typeof WalletRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/support'
       fullPath: '/support'
       preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/security': {
@@ -453,6 +473,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReferralsRoute: ReferralsRoute,
   RiskRoute: RiskRoute,
   SecurityRoute: SecurityRoute,
+  SettingsRoute: SettingsRoute,
   SupportRoute: SupportRoute,
   TradingRoute: TradingRoute,
   WalletRoute: WalletRoute,
