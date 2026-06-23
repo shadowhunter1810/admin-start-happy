@@ -25,6 +25,7 @@ import { Route as FinancialRouteImport } from './routes/financial'
 import { Route as CopyTradingRouteImport } from './routes/copy-trading'
 import { Route as CommsRouteImport } from './routes/comms'
 import { Route as CommissionsRouteImport } from './routes/commissions'
+import { Route as AuditTrailRouteImport } from './routes/audit-trail'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
@@ -109,6 +110,11 @@ const CommissionsRoute = CommissionsRouteImport.update({
   path: '/commissions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuditTrailRoute = AuditTrailRouteImport.update({
+  id: '/audit-trail',
+  path: '/audit-trail',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnalyticsRoute = AnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
   '/analytics': typeof AnalyticsRoute
+  '/audit-trail': typeof AuditTrailRoute
   '/commissions': typeof CommissionsRoute
   '/comms': typeof CommsRoute
   '/copy-trading': typeof CopyTradingRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
   '/analytics': typeof AnalyticsRoute
+  '/audit-trail': typeof AuditTrailRoute
   '/commissions': typeof CommissionsRoute
   '/comms': typeof CommsRoute
   '/copy-trading': typeof CopyTradingRoute
@@ -172,6 +180,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
   '/analytics': typeof AnalyticsRoute
+  '/audit-trail': typeof AuditTrailRoute
   '/commissions': typeof CommissionsRoute
   '/comms': typeof CommsRoute
   '/copy-trading': typeof CopyTradingRoute
@@ -195,6 +204,7 @@ export interface FileRouteTypes {
     | '/'
     | '/activity'
     | '/analytics'
+    | '/audit-trail'
     | '/commissions'
     | '/comms'
     | '/copy-trading'
@@ -216,6 +226,7 @@ export interface FileRouteTypes {
     | '/'
     | '/activity'
     | '/analytics'
+    | '/audit-trail'
     | '/commissions'
     | '/comms'
     | '/copy-trading'
@@ -237,6 +248,7 @@ export interface FileRouteTypes {
     | '/'
     | '/activity'
     | '/analytics'
+    | '/audit-trail'
     | '/commissions'
     | '/comms'
     | '/copy-trading'
@@ -259,6 +271,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ActivityRoute: typeof ActivityRoute
   AnalyticsRoute: typeof AnalyticsRoute
+  AuditTrailRoute: typeof AuditTrailRoute
   CommissionsRoute: typeof CommissionsRoute
   CommsRoute: typeof CommsRoute
   CopyTradingRoute: typeof CopyTradingRoute
@@ -391,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/audit-trail': {
+      id: '/audit-trail'
+      path: '/audit-trail'
+      fullPath: '/audit-trail'
+      preLoaderRoute: typeof AuditTrailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/analytics': {
       id: '/analytics'
       path: '/analytics'
@@ -419,6 +439,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ActivityRoute: ActivityRoute,
   AnalyticsRoute: AnalyticsRoute,
+  AuditTrailRoute: AuditTrailRoute,
   CommissionsRoute: CommissionsRoute,
   CommsRoute: CommsRoute,
   CopyTradingRoute: CopyTradingRoute,
@@ -439,13 +460,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
