@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ClientShell } from "@/components/client/ClientShell";
 import { CommunicationHistoryTab } from "@/lib/risk-source";
+import { CommunicationHistory } from "@/components/client/CommunicationHistory";
 
 export const Route = createFileRoute("/comms")({
   head: () => ({
@@ -11,7 +12,7 @@ export const Route = createFileRoute("/comms")({
   }),
   component: () => (
     <ClientShell>
-      <CommunicationHistoryTab />
+      <CommunicationHistory />
     </ClientShell>
   ),
 });
