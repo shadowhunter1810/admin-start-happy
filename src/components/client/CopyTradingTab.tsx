@@ -2177,7 +2177,7 @@ export function CopyTradingTab() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 font-sans">
           <div
             className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
-            onClick={() => setActionModal({ isOpen: false })}
+            onClick={() => setActionModal((s) => ({ ...s, isOpen: false }))}
           />
           <div className="bg-white rounded-xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden relative z-10">
             <div

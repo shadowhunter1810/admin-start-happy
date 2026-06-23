@@ -37,6 +37,8 @@ const TABS = [
   { to: "/marketing", label: "Marketing" },
   { to: "/comms", label: "Comms" },
   { to: "/notes", label: "Notes" },
+  { to: "/audit-trail", label: "Audit Trail" },
+  { to: "/settings", label: "Settings" },
 ] as const;
 
 export function ClientShell({ children }: { children: ReactNode }) {
