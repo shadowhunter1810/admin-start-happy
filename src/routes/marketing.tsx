@@ -527,21 +527,6 @@ function MarketingPage() {
           </div>
         )}
 
-        {tab === "source" && (
-          <Section title="Acquisition Source" subtitle="Where this client originated">
-            <div className="grid gap-x-8 md:grid-cols-2">
-              <KV k="Original Channel" v="Google Ads" />
-              <KV k="Original Campaign" v="Gold Trading 2022" />
-              <KV k="Original Country" v="India · Mumbai" />
-              <KV k="Original Device" v="Chrome / Android" />
-              <KV k="Landing Page" v="broker.com/gold-trading" />
-              <KV k="Referrer" v="IB-00201 Rajesh Kumar" />
-              <KV k="First Visit" v="14 Mar 2022 09:08" />
-              <KV k="First Deposit" v="14 Mar 2022 $500" />
-            </div>
-          </Section>
-        )}
-
         {tab === "participation" && (
           <Section title="Campaign Participation" subtitle="Click row for full campaign drawer">
             <div className="overflow-x-auto">

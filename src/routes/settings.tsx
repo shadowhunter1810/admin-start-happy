@@ -502,41 +502,6 @@ function SettingsPage() {
           </Section>
         )}
 
-        {/* {active === "account" && (
-          <GroupTable
-            title="2. Account Configuration"
-            subtitle="System-level account behaviour (not financial/trading data)."
-            rows={byGroup("Account Configuration")}
-            onOpen={setDrawer}
-          />
-        )} */}
-        {active === "workflow" && (
-          <>
-            <GroupTable
-              title="3. Workflow Configuration"
-              subtitle="Defines internal process — approval, escalation, priority."
-              rows={byGroup("Workflow")}
-              onOpen={setDrawer}
-            />
-            <Section title="Workflow Example" subtitle="When client requests withdrawal">
-              <div className="grid gap-3 md:grid-cols-2">
-                <div className="rounded-lg border border-slate-200 p-3">
-                  <div className="mb-1 text-xs font-semibold text-slate-700">Normal Client</div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <Pill>Requested</Pill>→<Pill tone="info">Finance Approval</Pill>
-                  </div>
-                </div>
-                <div className="rounded-lg border border-slate-200 p-3">
-                  <div className="mb-1 text-xs font-semibold text-slate-700">VIP Client</div>
-                  <div className="flex items-center gap-2 text-xs">
-                    <Pill tone="violet">Requested</Pill>→
-                    <Pill tone="success">Priority Approval</Pill>
-                  </div>
-                </div>
-              </div>
-            </Section>
-          </>
-        )}
         {active === "notifications" && (
           <GroupTable
             title="4. Notification Preferences"
