@@ -19,23 +19,23 @@ import {
 
 const TABS = [
   { to: "/", label: "Overview", exact: true },
-  { to: "/wallet", label: "Wallet" },
+  { to: "/wallet", label: "Wallet & Banking" },
   { to: "/financial", label: "Financial" },
-  { to: "/trading", label: "Trading" },
-  { to: "/history", label: "History" },
+  { to: "/trading", label: "Trading Accounts" },
+  { to: "/history", label: "Trade History" },
   { to: "/copy-trading", label: "Copy Trading" },
-  { to: "/kyc", label: "KYC" },
-  { to: "/support", label: "Support" },
-  { to: "/activity", label: "Activity" },
+  { to: "/kyc", label: "KYC & Compliance" },
+  { to: "/risk", label: "Risk Monitoring" },
+  { to: "/security", label: "Security Session" },
+  { to: "/support", label: "Support & Tickets" },
+  { to: "/activity", label: "Activity Logs" },
   { to: "/ib", label: "IB Partner" },
-  { to: "/referrals", label: "Referrals" },
-  { to: "/commissions", label: "Commissions" },
-  { to: "/analytics", label: "Analytics" },
-  { to: "/risk", label: "Risk" },
-  { to: "/security", label: "Security" },
-  { to: "/permissions", label: "Permissions" },
-  { to: "/marketing", label: "Marketing" },
-  { to: "/comms", label: "Comms" },
+  { to: "/referrals", label: "Referrals client" },
+  { to: "/commissions", label: "Commissions & Rebate" },
+  { to: "/analytics", label: "Ib Analytics" },
+  { to: "/marketing", label: "Marketing Campaigns" },
+  { to: "/permissions", label: "Permissions Access" },
+  { to: "/comms", label: "Communications" },
   { to: "/notes", label: "Notes" },
   { to: "/audit-trail", label: "Audit Trail" },
   { to: "/settings", label: "Settings" },
@@ -44,8 +44,8 @@ const TABS = [
 export function ClientShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const ctx =
-    (TABS as readonly { to: string; label: string; exact?: boolean }[]).find(
-      (t) => (t.exact ? pathname === t.to : pathname.startsWith(t.to)),
+    (TABS as readonly { to: string; label: string; exact?: boolean }[]).find((t) =>
+      t.exact ? pathname === t.to : pathname.startsWith(t.to),
     )?.label ?? "Detail";
 
   return (
@@ -146,11 +146,26 @@ function ClientHeader() {
             <Pill tone="muted">{client.id}</Pill>
           </div>
           <div className="mt-2 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" />{client.email}</span>
-            <span className="inline-flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" />{client.phone}</span>
-            <span className="inline-flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{client.city}, {client.country}</span>
-            <span className="inline-flex items-center gap-1.5"><Shield className="h-3.5 w-3.5" />{client.regulator}</span>
-            <span className="inline-flex items-center gap-1.5"><Activity className="h-3.5 w-3.5" />Last trade {client.lastTrade}</span>
+            <span className="inline-flex items-center gap-1.5">
+              <Mail className="h-3.5 w-3.5" />
+              {client.email}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Phone className="h-3.5 w-3.5" />
+              {client.phone}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="h-3.5 w-3.5" />
+              {client.city}, {client.country}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Shield className="h-3.5 w-3.5" />
+              {client.regulator}
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <Activity className="h-3.5 w-3.5" />
+              Last trade {client.lastTrade}
+            </span>
           </div>
 
           {/* Lifecycle progress */}
@@ -169,8 +184,8 @@ function ClientHeader() {
                         i === currentStageIndex
                           ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
                           : reached
-                          ? "bg-primary/20 text-primary"
-                          : "bg-muted text-muted-foreground"
+                            ? "bg-primary/20 text-primary"
+                            : "bg-muted text-muted-foreground"
                       }`}
                     >
                       {s}
@@ -191,13 +206,45 @@ function ClientHeader() {
 
         <div className="flex flex-col gap-2">
           <div className="flex gap-2">
-            <ActionBtn icon={<CircleDollarSign className="h-3.5 w-3.5" />} onClick={() => notify("Withdrawal approved", "TXN-8819934 · $500 released to client bank.", "success")}>Approve W/D</ActionBtn>
-            <ActionBtn onClick={() => notify("Email drafted", "Compose window opened for arjun.r@protonmail.com")}>Send email</ActionBtn>
-            <ActionBtn onClick={() => notify("Note added", "Empty note pinned to client timeline.", "success")}>Add note</ActionBtn>
+            <ActionBtn
+              icon={<CircleDollarSign className="h-3.5 w-3.5" />}
+              onClick={() =>
+                notify(
+                  "Withdrawal approved",
+                  "TXN-8819934 · $500 released to client bank.",
+                  "success",
+                )
+              }
+            >
+              Approve W/D
+            </ActionBtn>
+            <ActionBtn
+              onClick={() =>
+                notify("Email drafted", "Compose window opened for arjun.r@protonmail.com")
+              }
+            >
+              Send email
+            </ActionBtn>
+            <ActionBtn
+              onClick={() =>
+                notify("Note added", "Empty note pinned to client timeline.", "success")
+              }
+            >
+              Add note
+            </ActionBtn>
           </div>
           <div className="flex gap-2">
-            <ActionBtn tone="destructive" onClick={() => notify("Trading frozen", "All MT4/MT5 accounts disabled for this client.", "danger")}>Freeze trading</ActionBtn>
-            <ActionBtn onClick={() => notify("Manager assignment", "Reassign dialog opened.")}>Assign mgr</ActionBtn>
+            <ActionBtn
+              tone="destructive"
+              onClick={() =>
+                notify("Trading frozen", "All MT4/MT5 accounts disabled for this client.", "danger")
+              }
+            >
+              Freeze trading
+            </ActionBtn>
+            <ActionBtn onClick={() => notify("Manager assignment", "Reassign dialog opened.")}>
+              Assign mgr
+            </ActionBtn>
           </div>
         </div>
       </div>
