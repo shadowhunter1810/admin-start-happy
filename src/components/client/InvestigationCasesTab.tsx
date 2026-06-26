@@ -1172,7 +1172,7 @@ export default function InvestigationCasesTab() {
                     Authorization Sequence Sign-Off Chain:
                   </span>
                   <div className="space-y-2">
-                    {selectedCase.approvals?.map((step, i) => (
+                    {selectedCase.approvals?.map((step: any, i: number) => (
                       <div
                         key={i}
                         className="flex justify-between items-center bg-slate-50 border border-slate-200 p-2.5 rounded-lg"
@@ -1196,7 +1196,7 @@ export default function InvestigationCasesTab() {
                     Isolate Verification Metrics Payload:
                   </span>
                   <div className="space-y-1.5 font-mono text-[11px]">
-                    {selectedCase.evidence?.map((ev, i) => (
+                    {selectedCase.evidence?.map((ev: any, i: number) => (
                       <div
                         key={i}
                         className="bg-slate-950 p-2.5 rounded-lg text-slate-300 border border-slate-900 flex justify-between gap-4"
@@ -1321,7 +1321,7 @@ export default function InvestigationCasesTab() {
                     Consecutive Credentials Ingress Failure Queue[cite: 7]:
                   </span>
                   <div className="bg-slate-900 text-slate-300 font-mono text-[11px] p-4 rounded-xl space-y-1.5 border border-slate-950">
-                    {selectedLock.attempts?.map((att, i) => (
+                    {selectedLock.attempts?.map((att: any, i: number) => (
                       <p key={i} className="text-slate-300">
                         <span className="text-red-400 font-bold">Attempt {i + 1}:</span> {att}
                       </p>
@@ -1339,7 +1339,7 @@ export default function InvestigationCasesTab() {
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block border-b border-slate-200 pb-1">
                       Network & Anonymization Audit
                     </span>
-                    {selectedLock.ips?.map((ip, i) => (
+                    {selectedLock.ips?.map((ip: any, i: number) => (
                       <div
                         key={i}
                         className="flex justify-between text-[11px] font-mono py-1 border-b border-slate-100 last:border-0"
@@ -1367,7 +1367,7 @@ export default function InvestigationCasesTab() {
                   </span>
                   <div className="border border-slate-200 rounded-xl overflow-hidden font-mono text-[11px]">
                     <div className="bg-slate-50 p-3 divide-y divide-slate-100 space-y-2">
-                      {selectedLock.timeline?.map((tl, i) => (
+                      {selectedLock.timeline?.map((tl: any, i: number) => (
                         <div key={i} className="pt-2 first:pt-0">
                           <p className="text-indigo-600 font-bold">{tl.t}</p>
                           <p className="text-slate-700 font-sans mt-0.5">{tl.m}</p>
