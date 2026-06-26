@@ -80,6 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "CRM Setup Buddy creates a new project for CRM administrators to configure their CRM." },
+      { property: "og:description", content: "CRM Setup Buddy creates a new project for CRM administrators to configure their CRM." },
+      { name: "twitter:description", content: "CRM Setup Buddy creates a new project for CRM administrators to configure their CRM." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5839981-6751-4a3f-8e56-85740b058382/id-preview-201b4778--9ceda227-a4c0-45e9-b591-5aef896bbe7d.lovable.app-1782478743560.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5839981-6751-4a3f-8e56-85740b058382/id-preview-201b4778--9ceda227-a4c0-45e9-b591-5aef896bbe7d.lovable.app-1782478743560.png" },
     ],
     links: [
       {
