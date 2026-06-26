@@ -137,7 +137,6 @@
     border-color: var(--color-border);
   }
 
-<<<<<<< HEAD
   html, body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -169,10 +168,4 @@
 }
 @utility glow-ring {
   box-shadow: 0 0 0 1px oklch(0.55 0.18 250 / 0.35), 0 8px 32px -8px oklch(0.55 0.18 250 / 0.25);
-=======
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-  }
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
 }
