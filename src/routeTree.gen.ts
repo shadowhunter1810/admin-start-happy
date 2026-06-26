@@ -20,6 +20,7 @@ import { Route as PermissionsRouteImport } from './routes/permissions'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as MarketingRouteImport } from './routes/marketing'
 import { Route as KycRouteImport } from './routes/kyc'
+import { Route as InvestigateRouteImport } from './routes/investigate'
 import { Route as IbRouteImport } from './routes/ib'
 import { Route as HistoryRouteImport } from './routes/history'
 import { Route as FinancialRouteImport } from './routes/financial'
@@ -86,6 +87,11 @@ const KycRoute = KycRouteImport.update({
   path: '/kyc',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InvestigateRoute = InvestigateRouteImport.update({
+  id: '/investigate',
+  path: '/investigate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IbRoute = IbRouteImport.update({
   id: '/ib',
   path: '/ib',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/financial': typeof FinancialRoute
   '/history': typeof HistoryRoute
   '/ib': typeof IbRoute
+  '/investigate': typeof InvestigateRoute
   '/kyc': typeof KycRoute
   '/marketing': typeof MarketingRoute
   '/notes': typeof NotesRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/financial': typeof FinancialRoute
   '/history': typeof HistoryRoute
   '/ib': typeof IbRoute
+  '/investigate': typeof InvestigateRoute
   '/kyc': typeof KycRoute
   '/marketing': typeof MarketingRoute
   '/notes': typeof NotesRoute
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/financial': typeof FinancialRoute
   '/history': typeof HistoryRoute
   '/ib': typeof IbRoute
+  '/investigate': typeof InvestigateRoute
   '/kyc': typeof KycRoute
   '/marketing': typeof MarketingRoute
   '/notes': typeof NotesRoute
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/financial'
     | '/history'
     | '/ib'
+    | '/investigate'
     | '/kyc'
     | '/marketing'
     | '/notes'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/financial'
     | '/history'
     | '/ib'
+    | '/investigate'
     | '/kyc'
     | '/marketing'
     | '/notes'
@@ -266,6 +277,7 @@ export interface FileRouteTypes {
     | '/financial'
     | '/history'
     | '/ib'
+    | '/investigate'
     | '/kyc'
     | '/marketing'
     | '/notes'
@@ -290,6 +302,7 @@ export interface RootRouteChildren {
   FinancialRoute: typeof FinancialRoute
   HistoryRoute: typeof HistoryRoute
   IbRoute: typeof IbRoute
+  InvestigateRoute: typeof InvestigateRoute
   KycRoute: typeof KycRoute
   MarketingRoute: typeof MarketingRoute
   NotesRoute: typeof NotesRoute
@@ -382,6 +395,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KycRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/investigate': {
+      id: '/investigate'
+      path: '/investigate'
+      fullPath: '/investigate'
+      preLoaderRoute: typeof InvestigateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ib': {
       id: '/ib'
       path: '/ib'
@@ -466,6 +486,7 @@ const rootRouteChildren: RootRouteChildren = {
   FinancialRoute: FinancialRoute,
   HistoryRoute: HistoryRoute,
   IbRoute: IbRoute,
+  InvestigateRoute: InvestigateRoute,
   KycRoute: KycRoute,
   MarketingRoute: MarketingRoute,
   NotesRoute: NotesRoute,

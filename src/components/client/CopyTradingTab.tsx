@@ -25,7 +25,13 @@ import {
 } from "lucide-react";
 
 // --- SAFE ICON COMPONENT WRAPPER (Prevents SSR crashes if lucide fails to load an export) ---
-const SafeIcon = ({ icon: IconComponent, className = "w-5 h-5" }: { icon: any; className?: string }) => {
+const SafeIcon = ({
+  icon: IconComponent,
+  className = "w-5 h-5",
+}: {
+  icon: any;
+  className?: string;
+}) => {
   if (!IconComponent) {
     // Fallback block if any icon named export returns undefined
     return <div className={`${className} bg-slate-200 rounded`} />;
@@ -379,7 +385,13 @@ export function CopyTradingTab() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // --- UTILITY ACTION TRIGGER ---
-  const openActionModal = (type: string, severity: string, title: string, purpose: string, target: string) => {
+  const openActionModal = (
+    type: string,
+    severity: string,
+    title: string,
+    purpose: string,
+    target: string,
+  ) => {
     setActionModal({ isOpen: true, type, severity, title, purpose, target });
     setReasonInput("");
   };
