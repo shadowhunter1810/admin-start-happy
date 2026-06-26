@@ -9,8 +9,134 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WalletRouteImport } from './routes/wallet'
+import { Route as TradingRouteImport } from './routes/trading'
+import { Route as SupportRouteImport } from './routes/support'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as RiskRouteImport } from './routes/risk'
+import { Route as ReferralsRouteImport } from './routes/referrals'
+import { Route as PermissionsRouteImport } from './routes/permissions'
+import { Route as NotesRouteImport } from './routes/notes'
+import { Route as MarketingRouteImport } from './routes/marketing'
+import { Route as KycRouteImport } from './routes/kyc'
+import { Route as InvestigateRouteImport } from './routes/investigate'
+import { Route as IbRouteImport } from './routes/ib'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as FinancialRouteImport } from './routes/financial'
+import { Route as CopyTradingRouteImport } from './routes/copy-trading'
+import { Route as CommsRouteImport } from './routes/comms'
+import { Route as CommissionsRouteImport } from './routes/commissions'
+import { Route as AuditTrailRouteImport } from './routes/audit-trail'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WalletRoute = WalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TradingRoute = TradingRouteImport.update({
+  id: '/trading',
+  path: '/trading',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RiskRoute = RiskRouteImport.update({
+  id: '/risk',
+  path: '/risk',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReferralsRoute = ReferralsRouteImport.update({
+  id: '/referrals',
+  path: '/referrals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PermissionsRoute = PermissionsRouteImport.update({
+  id: '/permissions',
+  path: '/permissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketingRoute = MarketingRouteImport.update({
+  id: '/marketing',
+  path: '/marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KycRoute = KycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestigateRoute = InvestigateRouteImport.update({
+  id: '/investigate',
+  path: '/investigate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IbRoute = IbRouteImport.update({
+  id: '/ib',
+  path: '/ib',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinancialRoute = FinancialRouteImport.update({
+  id: '/financial',
+  path: '/financial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CopyTradingRoute = CopyTradingRouteImport.update({
+  id: '/copy-trading',
+  path: '/copy-trading',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommsRoute = CommsRouteImport.update({
+  id: '/comms',
+  path: '/comms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommissionsRoute = CommissionsRouteImport.update({
+  id: '/commissions',
+  path: '/commissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditTrailRoute = AuditTrailRouteImport.update({
+  id: '/audit-trail',
+  path: '/audit-trail',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActivityRoute = ActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,14 +145,55 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRoute
+  '/analytics': typeof AnalyticsRoute
+  '/audit-trail': typeof AuditTrailRoute
+  '/commissions': typeof CommissionsRoute
+  '/comms': typeof CommsRoute
+  '/copy-trading': typeof CopyTradingRoute
+  '/financial': typeof FinancialRoute
+  '/history': typeof HistoryRoute
+  '/ib': typeof IbRoute
+  '/investigate': typeof InvestigateRoute
+  '/kyc': typeof KycRoute
+  '/marketing': typeof MarketingRoute
+  '/notes': typeof NotesRoute
+  '/permissions': typeof PermissionsRoute
+  '/referrals': typeof ReferralsRoute
+  '/risk': typeof RiskRoute
+  '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
+  '/support': typeof SupportRoute
+  '/trading': typeof TradingRoute
+  '/wallet': typeof WalletRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRoute
+  '/analytics': typeof AnalyticsRoute
+  '/audit-trail': typeof AuditTrailRoute
+  '/commissions': typeof CommissionsRoute
+  '/comms': typeof CommsRoute
+  '/copy-trading': typeof CopyTradingRoute
+  '/financial': typeof FinancialRoute
+  '/history': typeof HistoryRoute
+  '/ib': typeof IbRoute
+  '/investigate': typeof InvestigateRoute
+  '/kyc': typeof KycRoute
+  '/marketing': typeof MarketingRoute
+  '/notes': typeof NotesRoute
+  '/permissions': typeof PermissionsRoute
+  '/referrals': typeof ReferralsRoute
+  '/risk': typeof RiskRoute
+  '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
+  '/support': typeof SupportRoute
+  '/trading': typeof TradingRoute
+  '/wallet': typeof WalletRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-<<<<<<< HEAD
   '/activity': typeof ActivityRoute
   '/analytics': typeof AnalyticsRoute
   '/audit-trail': typeof AuditTrailRoute
@@ -122,20 +289,10 @@ export interface FileRouteTypes {
     | '/support'
     | '/trading'
     | '/wallet'
-=======
-}
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-<<<<<<< HEAD
   ActivityRoute: typeof ActivityRoute
   AnalyticsRoute: typeof AnalyticsRoute
   AuditTrailRoute: typeof AuditTrailRoute
@@ -157,13 +314,10 @@ export interface RootRouteChildren {
   SupportRoute: typeof SupportRoute
   TradingRoute: typeof TradingRoute
   WalletRoute: typeof WalletRoute
-=======
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-<<<<<<< HEAD
     '/wallet': {
       id: '/wallet'
       path: '/wallet'
@@ -311,8 +465,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ActivityRouteImport
       parentRoute: typeof rootRouteImport
     }
-=======
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
     '/': {
       id: '/'
       path: '/'
@@ -325,7 +477,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-<<<<<<< HEAD
   ActivityRoute: ActivityRoute,
   AnalyticsRoute: AnalyticsRoute,
   AuditTrailRoute: AuditTrailRoute,
@@ -347,13 +498,10 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRoute: SupportRoute,
   TradingRoute: TradingRoute,
   WalletRoute: WalletRoute,
-=======
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-<<<<<<< HEAD
 
 import type { getRouter } from './router.tsx'
 import type { startInstance } from './start.ts'
@@ -364,5 +512,3 @@ declare module '@tanstack/react-start' {
     config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }
-=======
->>>>>>> 6511af4d9019f0a38eacb9d99ae48047dbbfd4a7
