@@ -8,7 +8,6 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
-import { Toaster } from "sonner";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -78,14 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Forex Admin Dashboard" },
-      { name: "description", content: "Super admin dashboard for forex broker operations, client management, KYC, IB partners, commissions, and risk monitoring." },
-      { property: "og:title", content: "Forex Admin Dashboard" },
-      { property: "og:description", content: "Super admin dashboard for forex broker operations, client management, KYC, IB partners, commissions, and risk monitoring." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Forex Admin Dashboard" },
-      { name: "twitter:description", content: "Super admin dashboard for forex broker operations, client management, KYC, IB partners, commissions, and risk monitoring." },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       {
