@@ -28,10 +28,10 @@ import {
 export default function InvestigationCasesTab() {
   // Navigation & Active Layout States
   const [activeSubSection, setActiveSubSection] = useState("current-status");
-  const [selectedCase, setSelectedCase] = useState(null);
-  const [selectedLock, setSelectedLock] = useState(null);
-  const [selectedHold, setSelectedHold] = useState(null);
-  const [selectedRestriction, setSelectedRestriction] = useState(null);
+  const [selectedCase, setSelectedCase] = useState<any>(null);
+  const [selectedLock, setSelectedLock] = useState<any>(null);
+  const [selectedHold, setSelectedHold] = useState<any>(null);
+  const [selectedRestriction, setSelectedRestriction] = useState<any>(null);
   const [drawerTab, setDrawerTab] = useState("overview");
   const [searchQuery, setSearchQuery] = useState("");
 
